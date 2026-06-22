@@ -1,0 +1,52 @@
+/* ==========================================================================
+   BUTTONS — the locked, skin-agnostic button system (2026-06-20).
+   Two archetypes, both token-driven. The rule that keeps text readable on
+   EVERY skin (dark or light):
+     - .btn-primary  = a SOLID accent fill (--btn-fill) + an ink colour picked
+                       for contrast on that fill (--btn-ink). Never a low-opacity
+                       wash, never inherited light text.
+     - .btn (ghost)  = transparent + the body text colour (--text, already
+                       contrast-correct per skin) + an accent border.
+   Each skin sets --btn-fill / --btn-ink / --btn-border (see tokens.css for the
+   defaults and skins/<skin>.css for the per-skin values).
+   ========================================================================== */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--text);                 /* body ink — readable on any skin */
+  border: 1px solid var(--line-strong);
+  background: rgba(220, 230, 255, 0.04);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color var(--t-fast), background var(--t-fast),
+              transform var(--t-fast), box-shadow var(--t-fast);
+}
+.btn:hover {
+  border-color: var(--gold-ink);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35), 0 0 0 1px color-mix(in srgb, var(--gold) 20%, transparent);
+}
+
+.btn-sm { padding: 8px 17px; font-size: 0.79rem; }
+
+.btn-primary {
+  background: var(--btn-fill);
+  color: var(--btn-ink);
+  border-color: var(--btn-border);
+}
+.btn-primary:hover {
+  background: var(--btn-fill);
+  border-color: var(--btn-border);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--btn-border);
+}
