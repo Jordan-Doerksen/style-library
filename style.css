@@ -141,14 +141,16 @@ header.site{
 /* padding-bottom extends the reveal mask so descenders (the g in "things") aren't clipped;
    negative margin keeps layout spacing unchanged */
 .hl-word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.2em;margin-bottom:-.2em}
-.hl-word > span{
+/* descendant (not child) selector: effects.js nests em-whisper words as
+   .hl-word > em > span, so `> span` would skip them and they'd never rise */
+.hl-word span{
   display:inline-block;transform:translateY(1.4em);   /* start fully below the padded mask */
   transition:transform .7s cubic-bezier(.2,.75,.2,1),opacity .35s ease;
   will-change:transform;
 }
-.hero h1.lift .hl-word > span{transform:translateY(0)}
-.hero h1:hover .hl-word > span{opacity:.92}
-.hero h1 .hl-word:hover > span{transform:translateY(-2px) skewX(-3deg)}
+.hero h1.lift .hl-word span{transform:translateY(0)}
+.hero h1:hover .hl-word span{opacity:.92}
+.hero h1 .hl-word:hover span{transform:translateY(-2px) skewX(-3deg)}
 
 .subline{
   font-size:clamp(1.05rem,1.7vw,1.34rem);
@@ -375,7 +377,7 @@ a:focus-visible,.btn:focus-visible,.card:focus-visible{
   .sun{animation:none}
   .ticker__track{animation:none;transform:none}
   .reveal{opacity:1;transform:none}
-  .hl-word > span{transform:none!important}
+  .hl-word span{transform:none!important}
   .cursor{display:none!important}
   body{cursor:auto!important}
   /* no tilt, no lift — but keep a believable elevated state */
