@@ -1,0 +1,63 @@
+/* ==========================================================================
+   TOKENS — the control panel for the whole observatory.
+   Change a color or font here and it updates everywhere.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark; /* native controls (audio players, scrollbars) render dark */
+
+  /* ----- The night sky ----- */
+  --bg: #04060c;
+  --bg-soft: #070a13;
+  --panel: rgba(10, 14, 24, 0.58);
+  --panel-solid: #0b101c;
+  --glass-blur: 13px;
+  --line: rgba(190, 205, 255, 0.09);
+  --line-strong: rgba(190, 205, 255, 0.2);
+  --text: #e9edf6;
+  --text-muted: #97a0b5;
+  --text-faint: #76808f;   /* lifted from #5e677d -> ~5:1 on --bg (passes AA) */
+  --starlight: #f2f4fa;
+
+  /* ----- Accents — one gold thread; the rest a restrained, desaturated family.
+           Refined Observatory (2026-06-22): deepened from a brighter spread so the
+           default reads professional, not gamey. Names kept; all clear AA on --bg. ----- */
+  --gold: #d8ac4e;          /* the one dominant thread — hero, about, dividers */
+  --accent: #57b6a8;        /* tech / code panels — refined teal (was neon #4fe3d0) */
+  --forge: #d99a52;         /* Red River 3D — muted amber (was #ffaa44) */
+  --music-mystic: #a98cd0;  /* Bedroom Weather — dusty violet (was #c084fc) */
+  --codex-blue: #6f9bd1;    /* Warcraft III — slate blue (was #6aa9ff) */
+  --ember: #d8693f;         /* Sol Obscurus — terracotta (was #ff6b35) */
+  --places-blue: #93accf;   /* Places — muted periwinkle (was #8fb7ff) */
+
+  /* ----- Buttons + accent-as-text (per-skin; ink is always picked for contrast on the fill) ----- */
+  --btn-fill: #d8ac4e;        /* primary CTA background — solid accent, never a wash */
+  --btn-ink: #1c1408;         /* text ON the fill — never inherits a light colour */
+  --btn-border: #e6bd66;      /* primary border + hover ring */
+  --gold-ink: var(--gold);    /* thread colour, but safe as small text (deepened on light skins) */
+
+  /* ----- Type: high-tech leads, fantasy whispers ----- */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif; /* headings, nav */
+  --font-accent: 'Fraunces', Georgia, serif;  /* italic accent words + quotes ONLY */
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-rune: 'Cinzel', Georgia, serif; /* allowed INSIDE Sol Obscurus / OoT modal only */
+
+  /* ----- Rhythm ----- */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --content-w: 1160px;
+  --section-pad: clamp(84px, 12vw, 160px);
+  --panel-pad: clamp(22px, 3.5vw, 38px);
+
+  /* ----- Depth ----- */
+  --shadow-panel: 0 16px 40px rgba(0, 0, 0, 0.42);
+  --inner-light: inset 0 1px 0 rgba(220, 230, 255, 0.045);
+
+  /* ----- Motion ----- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-fast: 180ms;
+  --t-med: 380ms;
+  --t-slow: 900ms;
+}

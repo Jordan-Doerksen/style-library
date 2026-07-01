@@ -1,69 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Style Template Library — demo</title>
-
-  <!-- Pre-paint: set the saved skin BEFORE any CSS so there's no flash.
-       (Copy this verbatim into your own <head>.) -->
-  <script>try{var s=localStorage.getItem('obs-skin');if(s)document.documentElement.dataset.skin=s;}catch(e){}</script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cinzel:wght@600&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="skins.css" />
-  <link rel="stylesheet" href="buttons.css" />
-  <link rel="stylesheet" href="skins/sentinel.css" />
-  <link rel="stylesheet" href="skins/daybreak.css" />
-  <link rel="stylesheet" href="skins/military.css" />
-  <link rel="stylesheet" href="skins/angelic.css" />
-  <link rel="stylesheet" href="skins/demonic.css" />
-  <link rel="stylesheet" href="skins/nature.css" />
-  <link rel="stylesheet" href="skins/chic.css" />
-  <link rel="stylesheet" href="skins/pro.css" />
-  <link rel="stylesheet" href="demo.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>style-library — Daybreak Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="paperNoise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#paperNoise)"/>
+  </svg>
+  <div class="rules" aria-hidden="true"></div>
+  <div class="sun" id="sun" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <div class="badge"><span class="dot"></span>style-library ✦ Daybreak Editorial</div>
 
   <div class="wrap">
-    <header class="hero">
-      <canvas id="sigil" role="img" aria-label="The hero centrepiece for the active skin"></canvas>
-      <p class="eyebrow">Style template library</p>
-      <h1>One layout, many atmospheres</h1>
-      <p class="lede">Switch skins from the picker, top-right. Nothing moves — only the palette, the background, and the hero motif change.</p>
+    <header class="site">
+      <a href="#top" class="wordmark">JORDAN <span>DOERKSEN</span></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#work" class="n-work">Work</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+      </nav>
     </header>
 
-    <section class="glass-panel">
-      <h2>The button system</h2>
-      <p>Primary is a solid accent fill with a contrast-checked ink; secondary is a ghost that wears the body text colour. Both stay readable on every skin — that's the whole point.</p>
-      <div class="row">
-        <a class="btn btn-primary" href="#">Primary action</a>
-        <a class="btn" href="#">Secondary</a>
-        <a class="link" href="#">or an inline link</a>
-      </div>
-    </section>
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <p class="eyebrow">Portfolio · The Observatory · 2026</p>
+        <h1 id="hero-h" class="reveal">I make things that <em>work.</em></h1>
+        <p class="subline reveal">
+          <strong>Rail conductor in Winnipeg. Self-taught maker.</strong>
+          Trading cockpits, rail trainers, browser games, and the occasional useful tool — each with a repo behind it.
+        </p>
+        <div class="cta-row reveal">
+          <a href="#work" class="btn btn-primary" id="magnet">See the work <span class="arw">→</span></a>
+          <a href="#about" class="btn btn-ghost">About</a>
+        </div>
 
-    <section class="glass-panel">
-      <h2>Panels carry their own treatment</h2>
-      <p>Dark skins get translucent glass; light skins (Daybreak) override to solid paper so text never fights a blur. The skin decides via tokens — the markup doesn't change.</p>
-      <div class="row">
-        <a class="btn btn-primary btn-sm" href="#">Small primary</a>
-        <a class="btn btn-sm" href="#">Small ghost</a>
+        <div class="stats reveal">
+          <div class="stat"><div class="num" data-count="32">0</div><div class="lbl">Projects</div></div>
+          <div class="stat"><div class="num" data-count="8">0</div><div class="lbl">Categories</div></div>
+          <div class="stat"><div class="num" data-count="0">0</div><div class="lbl">Build tools</div></div>
+        </div>
+      </section>
+
+      <!-- CATEGORY TICKER -->
+      <div class="ticker reveal" aria-hidden="true">
+        <div class="ticker__track" id="tickerTrack">
+          <span class="ticker__item">Rail</span><span class="ticker__item">Games</span><span class="ticker__item">Trading</span><span class="ticker__item">Studio</span><span class="ticker__item">Signals</span><span class="ticker__item">Tools</span>
+          <span class="ticker__item">Rail</span><span class="ticker__item">Games</span><span class="ticker__item">Trading</span><span class="ticker__item">Studio</span><span class="ticker__item">Signals</span><span class="ticker__item">Tools</span>
+        </div>
       </div>
-    </section>
+
+      <!-- CATEGORY GRID (now inside .wrap, aligned to content) -->
+      <section id="categories" aria-labelledby="cat-h">
+        <div class="sec-head reveal">
+          <h2 id="cat-h">What's in the archive</h2>
+          <span class="idx">§ 01 — Six categories</span>
+        </div>
+        <div class="cat-grid reveal">
+          <div class="cat"><span class="num">01</span><div><h3>Rail<span class="tick"> ✦</span></h3><p>CROR trainers &amp; switching sims</p></div></div>
+          <div class="cat"><span class="num">02</span><div><h3>Games<span class="tick"> ✦</span></h3><p>Single-file browser games</p></div></div>
+          <div class="cat"><span class="num">03</span><div><h3>Trading<span class="tick"> ✦</span></h3><p>Read-only market cockpits</p></div></div>
+          <div class="cat"><span class="num">04</span><div><h3>Studio<span class="tick"> ✦</span></h3><p>Client websites</p></div></div>
+          <div class="cat"><span class="num">05</span><div><h3>Signals<span class="tick"> ✦</span></h3><p>Local-LLM news engines</p></div></div>
+          <div class="cat"><span class="num">06</span><div><h3>Tools<span class="tick"> ✦</span></h3><p>Small tools that kill real friction</p></div></div>
+        </div>
+      </section>
+
+      <!-- FEATURED WORK -->
+      <section id="work" aria-labelledby="work-h">
+        <div class="sec-head reveal">
+          <h2 id="work-h">Featured work</h2>
+          <span class="idx">§ 02 — Selected pieces</span>
+        </div>
+        <div class="work">
+          <a href="#work" class="card reveal">
+            <span class="kicker">Featured</span>
+            <h3>Sentinel-Pro</h3>
+            <p>Read-only ES-futures cockpit. Watches the tape so you don't have to.</p>
+            <div class="tags"><span class="tag">Trading</span><span class="tag">Rust/Tauri</span></div>
+            <span class="spec">v1.0.0 · field-verified live</span>
+          </a>
+          <a href="#work" class="card reveal">
+            <span class="kicker">Featured</span>
+            <h3>Clear Board</h3>
+            <p>Free CROR qualification trainer for conductors.</p>
+            <div class="tags"><span class="tag">Rail</span><span class="tag">Web</span></div>
+            <span class="spec">Free · tip-jar · all-web</span>
+          </a>
+          <a href="#work" class="card reveal">
+            <span class="kicker">Featured</span>
+            <h3>Glass Atlas</h3>
+            <p>Generative star-plate maker. Reroll until it's one of a kind.</p>
+            <div class="tags"><span class="tag">Games</span><span class="tag">Canvas</span></div>
+            <span class="spec">Single-file · seed in URL</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site" id="about">
+      <p class="ftxt reveal">Everything here has a repo behind it.</p>
+      <p class="fmark reveal">Jordan Doerksen · <span>2026</span></p>
+    </footer>
   </div>
 
-  <script type="module">
-    import { initSkins } from './engine/skins.js';
-    import { initSky } from './engine/sky.js';
-    import { initHero } from './engine/hero.js';
-    import { initCursorFx } from './engine/cursor-fx.js';
-    initSkins();    // builds the picker, restores the saved skin, fires "skinchange"
-    initSky();      // paints #sky via the --sky-mode renderer
-    initHero();     // paints #sigil via the --hero-motif renderer
-    initCursorFx(); // per-skin cursor trail + click FX (fine pointer only)
-  </script>
+<script src="effects.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Style Template Library — demo</title>
+
+  <!-- Pre-paint: set the saved skin BEFORE any CSS so there's no flash.
+       (Copy this verbatim into your own <head>.) -->
+  <script>try{var s=localStorage.getItem('obs-skin');if(s)document.documentElement.dataset.skin=s;}catch(e){}</script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="skins.css" />
+  <link rel="stylesheet" href="buttons.css" />
+  <link rel="stylesheet" href="skins/sentinel.css" />
+  <link rel="stylesheet" href="skins/daybreak.css" />
+  <link rel="stylesheet" href="skins/military.css" />
+  <link rel="stylesheet" href="skins/angelic.css" />
+  <link rel="stylesheet" href="skins/demonic.css" />
+  <link rel="stylesheet" href="skins/nature.css" />
+  <link rel="stylesheet" href="skins/chic.css" />
+  <link rel="stylesheet" href="skins/pro.css" />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <header class="hero">
+      <canvas id="sigil" role="img" aria-label="The hero centrepiece for the active skin"></canvas>
+      <p class="eyebrow">Style template library</p>
+      <h1>One layout, many atmospheres</h1>
+      <p class="lede">Switch skins from the picker, top-right. Nothing moves — only the palette, the background, and the hero motif change.</p>
+    </header>
+
+    <section class="glass-panel">
+      <h2>The button system</h2>
+      <p>Primary is a solid accent fill with a contrast-checked ink; secondary is a ghost that wears the body text colour. Both stay readable on every skin — that's the whole point.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="#">Primary action</a>
+        <a class="btn" href="#">Secondary</a>
+        <a class="link" href="#">or an inline link</a>
+      </div>
+    </section>
+
+    <section class="glass-panel">
+      <h2>Panels carry their own treatment</h2>
+      <p>Dark skins get translucent glass; light skins (Daybreak) override to solid paper so text never fights a blur. The skin decides via tokens — the markup doesn't change.</p>
+      <div class="row">
+        <a class="btn btn-primary btn-sm" href="#">Small primary</a>
+        <a class="btn btn-sm" href="#">Small ghost</a>
+      </div>
+    </section>
+  </div>
+
+  <script type="module">
+    import { initSkins } from './engine/skins.js';
+    import { initSky } from './engine/sky.js';
+    import { initHero } from './engine/hero.js';
+    import { initCursorFx } from './engine/cursor-fx.js';
+    initSkins();    // builds the picker, restores the saved skin, fires "skinchange"
+    initSky();      // paints #sky via the --sky-mode renderer
+    initHero();     // paints #sigil via the --hero-motif renderer
+    initCursorFx(); // per-skin cursor trail + click FX (fine pointer only)
+  </script>
+</body>
+</html>
