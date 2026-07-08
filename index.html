@@ -30,6 +30,7 @@
         <a href="#categories">Categories</a>
         <a href="#about">About</a>
       </nav>
+      <button type="button" id="cmdk-trigger" class="cmdk-trigger">Search <kbd>⌘K</kbd></button>
     </header>
 
     <main id="top">
@@ -115,6 +116,19 @@
     </footer>
   </div>
 
+  <script type="application/json" id="cmdk-data">
+    [
+      { "label": "Work", "tag": "Section", "href": "#work" },
+      { "label": "Categories", "tag": "Section", "href": "#categories" },
+      { "label": "About", "tag": "Section", "href": "#about" },
+      { "label": "Sentinel-Pro", "tag": "Trading", "href": "#work" },
+      { "label": "Clear Board", "tag": "Rail", "href": "#work" },
+      { "label": "Glass Atlas", "tag": "Games", "href": "#work" }
+    ]
+  </script>
+
 <script src="effects.js" defer></script>
+<script src="shader.js" defer></script>
+<script src="cmdk.js" defer></script>
 </body>
 </html>

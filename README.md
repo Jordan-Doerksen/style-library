@@ -123,6 +123,52 @@ what you use, skip what you don't.
 
 Everything is wrapped for `file://` (no fetch, no modules; localStorage in try/catch).
 
+## shader.js — sun canvas noise (optional)
+
+Drop-in add-on, load after `effects.js`. Finds `#sun` and appends a `<canvas class="sun-canvas">`
+inside it, drawing three soft drifting accent-tinted blobs (plain 2D canvas — a hand-ported idea
+from [Paper Shaders](https://shaders.paper.design/), no WebGL, no deps). Adds depth to the flat
+CSS radial-gradient sun. Under `prefers-reduced-motion`, draws one static frame and never starts
+a `requestAnimationFrame` loop. Missing `#sun` means it does nothing.
+
+```html
+<script src="effects.js" defer></script>
+<script src="shader.js" defer></script>
+```
+
+## cmdk.js — command palette / site search (optional)
+
+Drop-in add-on. An accessible Cmd/Ctrl-K search overlay — hand-ported combobox/listbox keyboard
+pattern (reference: [React Aria](https://react-aria.adobe.com/)), vanilla, no deps. Reads its item
+list from a JSON `<script>` tag and opens on a trigger button or the keyboard shortcut:
+
+```html
+<button type="button" id="cmdk-trigger" class="cmdk-trigger">Search <kbd>⌘K</kbd></button>
+
+<script type="application/json" id="cmdk-data">
+  [{ "label": "Work", "tag": "Section", "href": "#work" }]
+</script>
+<script src="cmdk.js" defer></script>
+```
+
+Arrow keys move the highlight, Enter navigates to the item's `href`, Escape closes and returns
+focus to whatever opened it. Missing `#cmdk-data` means it does nothing.
+
+## State matrix
+
+Every interactive element covers disabled / pressed / loading, not just rest/hover/focus
+(audited against shadcn/ui's component state coverage):
+
+- `.btn:disabled` or `.btn[aria-disabled="true"]` — dimmed, `not-allowed` cursor, no shadow.
+- `.btn:active` — presses down 1px.
+- `.btn.is-loading` — label hides, a spinner takes its place (a static ring under reduced motion).
+- `.card[aria-disabled="true"]` — dimmed and desaturated.
+- `.cat:focus-visible` — gets its own outline (previously only `.card`/`.btn` did).
+- `.site-nav a[aria-current="page"]` — persistent underline, not just on hover.
+
+See [REFERENCES.md](REFERENCES.md) for the external sites these three features were lifted from,
+and the rest of the catalog still queued for a future pass.
+
 ---
 
 ## The laws
