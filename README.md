@@ -1,3 +1,5 @@
+Unlisted (owner's ruling, 2026-10-20): this page is kept online but is not indexed or linked.
+
 # style-library — Daybreak Editorial
 
 Jordan's house style. Warm editorial light on paper, one Goldenrod thread, technical
